@@ -13,26 +13,3 @@ total 12
 
 
 
-$ ./rest-dumper.py -h
-Usage: rest-dumper.py [options]
-
-Options:
-  -h, --help            show this help message and exit
-  -d, --debug           Print out arg values given
-  -u REMUSER, --user=REMUSER
-                        Remote user name
-  -p REMPASS, --pass=REMPASS
-                        Remote user name
-  -a ADDRESS, --address=ADDRESS
-                        address of remote device
-  -n NAMEPREFIX, --name=NAMEPREFIX
-                        global name prefix for the opbject group being created
-  -t TARGET, --target=TARGET
-                        address that will be used in example if -e is used
-  -v VSADDRESS, --vs=VSADDRESS
-                        address that will be used for Virtual server
-                        destination
-  -r REMOVEAFTERSECONDS, --remove=REMOVEAFTERSECONDS
-                        Take arg of second and will remove objects created
-                        after sleeping for n seconds, if not present will not
-                        remove
