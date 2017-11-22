@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # rest config dumper to excersize API 
-# ver 0.0.2
+# ver 0.0.3
 
 
 from f5.bigip import ManagementRoot
