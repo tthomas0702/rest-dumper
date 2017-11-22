@@ -1,0 +1,48 @@
+when RULE_INIT {
+  set static::debug 1
+}
+
+when HTTP_REQUEST priority 100 {
+      set ckname "info_rule1"
+      set ckvalue "fake1"
+      set cookie [format "%s=%s; path=/; domain=%s" $ckname $ckvalue ""]
+      set rtt [TCP::rtt]
+      set rtt_ms [expr $rtt/16]
+      HTTP::respond 200  content [ subst {
+      <html><head><title>Info Page</title></head>
+      <body>
+      <H2><p style="text-align: center;">Connection Info Irule</p><H2>
+      <H3>Link info</H3>
+      Mac of lasthop [LINK::lasthop]<br>
+      Link Qos = [LINK::qos]<br>
+      VLAN ID [LINK::vlan_id]<br>
+      <H3>IP info</H3>
+      The source of the request is [IP::client_addr] <br>
+      Connecting to Virtual IP  [IP::local_addr]<br>
+      Hop count = [IP::hops] <br>
+      Idle Time = [IP::idle_timeout]<br>
+      The IP protocol is [IP::protocol]<br>
+      IP::remote_addr is [IP::remote_addr]<br>
+      Packets in = [IP::stats pkts in]<br>
+      Packets out = [IP::stats pkts out]<br>
+      bytes in [IP::stats bytes in]<br>
+      bytes out [IP::stats bytes out]<br>
+      age [IP::stats age] <br>
+      ToS value is set to [IP::tos]<br> 
+      ttl of the last IP packet [IP::ttl]<br> 
+      clientside IPv[IP::version]<br>
+      <H3>TCP info</H3>
+      ports: client:[TCP::client_port ] <====> [TCP::local_port]:server<br>
+      client MSS [TCP::mss]<br>
+      TCP:rtt returns [TCP::rtt] /16 = $rtt_ms ms<br>
+      <H3>HTTP info</H3>
+      request method [HTTP::method] <br>
+      URI of request [HTTP::uri] <br>
+      PATH [HTTP::path]<br>
+      query of request [HTTP::query] <br>
+      Raw request and all headers:<br><br>
+      [HTTP::request]<br>
+      </body></html>
+      }] "Set-Cookie" $cookie 
+     }
+

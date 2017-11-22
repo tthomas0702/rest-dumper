@@ -1,0 +1,65 @@
+when CLIENT_ACCEPTED {
+  log local0. "in CLIENT_ACCEPTED"
+}
+
+when CLIENT_CLOSED {
+  log local0. "in CLIENT_CLOSED"
+}
+
+when CLIENT_DATA {
+  log local0. "in CLIENT_DATA"
+}
+
+when HTTP_REQUEST {
+  log local0. "in HTTP_REQUEST"
+}
+
+when HTTP_REQUEST_DATA {
+  log local0. "in HTTP_REQUEST_DATA"
+}
+
+when HTTP_REQUEST_SEND {
+  log local0. "in HTTP_REQUEST_SEND"
+}
+
+when HTTP_RESPONSE {
+  log local0. "in HTTP_RESPONSE"
+}
+
+when HTTP_RESPONSE_CONTINUE {
+  log local0. "in HTTP_RESPONSE_CONTINUE"
+}
+
+when HTTP_RESPONSE_DATA {
+  log local0. "in HTTP_RESPONSE_DATA"
+}
+
+when LB_FAILED {
+  log local0. "in LB_FAILED"
+}
+
+when LB_SELECTED {
+  log local0. "in LB_SELECTED"
+}
+
+when RULE_INIT {
+  log local0. "in RULE_INIT"
+}
+
+when SERVER_CLOSED {
+  log local0. "in SERVER_CLOSED"
+}
+
+when SERVER_CONNECTED {
+  log local0. "in SERVER_CONNECTED"
+}
+
+when SERVER_DATA {
+  log local0. "in SERVER_DATA"
+}
+
+when SERVER_LINE {
+  log local0. "in SERVER_LINE"
+}
+
+
