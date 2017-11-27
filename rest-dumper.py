@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # rest config dumper to excersize API 
-# ver 0.0.3
+# ver 0.0.6
 
 
 from f5.bigip import ManagementRoot
@@ -119,7 +119,7 @@ dgValues = open('include_rest-dumper/data_group.txt', 'r').read()
 dataGroupNameList  = []    # This will be used to delete as well
 dataGroupName1 = options.namePrefix + "_data_group"
 # set number of rules to make
-for i in range(1,69):
+for i in range(1,9):
     dataGroupNameList.append(dataGroupName1 + str(i))
 
 for dgName in dataGroupNameList:
@@ -146,7 +146,7 @@ for dgName in dataGroupNameList:
 iruleName1 = options.namePrefix + "_irule"
 ruleNameList = []    # This will be used to delete as well
 # set number of rules to make
-for i in range(1,50):
+for i in range(1,3):
     ruleNameList.append(iruleName1 + str(i))
 # open on test file that has the irule code I will use
 iruleCode = open('include_rest-dumper/irule1.txt', 'r').read()
@@ -296,7 +296,7 @@ vip80.profiles = [
     ]
 vip80.persist = ['cookie']
 vip80.fallbackPersistence = '/Common/source_addr'
-vip80.rules = [logRuleName, ruleNameList[0], ruleNameList[2], ruleNameList[2], ruleNameList[3], ruleNameList[4], ruleNameList[5]]
+vip80.rules = [logRuleName, ruleNameList[0], ruleNameList[1]]
 vip80.update()
 
 ## cleanup vip example ##
@@ -330,12 +330,18 @@ vip443.profiles = [
     ]
 vip443.persist = ['cookie']
 vip443.fallbackPersistence = '/Common/source_addr'
-vip443.rules = [logRuleName, ruleNameList[0], ruleNameList[2], ruleNameList[2], ruleNameList[3], ruleNameList[4], ruleNameList[5]]
+vip443.rules = [logRuleName, ruleNameList[0], ruleNameList[1]]
 vip443.update()
 
 
 ## cleanup vip example ##
 #vip443.delete()
+
+
+#### save config ####
+save = mgmt.tm.sys.config.exec_cmd(command= 'save')
+
+
 
 
 #### next clean up if -r is given ####
@@ -390,7 +396,8 @@ if options.removeAfterSeconds:
     httpProfile.delete()    
 
 
-
+    ### save after clenup ###
+    save = mgmt.tm.sys.config.exec_cmd(command= 'save')
 
 
 
