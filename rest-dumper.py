@@ -114,7 +114,7 @@ mgmt = ManagementRoot(options.address, options.remUser, options.remPass)
 
 #### make  a lot data-group ####
 # open test file with data-group values in it
-dgValues = open('include_rest-dumper/data_group.txt', 'r').read()
+dgValues = open('data_group.txt', 'r').read()
 
 dataGroupNameList  = []    # This will be used to delete as well
 dataGroupName1 = options.namePrefix + "_data_group"
@@ -149,14 +149,14 @@ ruleNameList = []    # This will be used to delete as well
 for i in range(1,3):
     ruleNameList.append(iruleName1 + str(i))
 # open on test file that has the irule code I will use
-iruleCode = open('include_rest-dumper/irule1.txt', 'r').read()
+iruleCode = open('irule1.txt', 'r').read()
 
 # create rules
 for ruleName in ruleNameList:
     irule1 = mgmt.tm.ltm.rules.rule.create(name= ruleName, partition = 'Common', apiAnonymous= iruleCode)
 
 # logger irule
-iruleCode = open('include_rest-dumper/irule1.txt', 'r').read()
+iruleCode = open('irule1.txt', 'r').read()
 logRuleName = options.namePrefix + "_logger_irule"
 loggerIrule = mgmt.tm.ltm.rules.rule.create(name= logRuleName, partition = 'Common', apiAnonymous= iruleCode)
 
